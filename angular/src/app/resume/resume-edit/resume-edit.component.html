@@ -1,0 +1,281 @@
+<div class="main-title details-list">Resumé Creator</div>
+
+<!-- Personal Details -->
+<div class="details-list" fxLayout="column" fxLayoutGap="15px">
+  <mat-card>
+    <div class="section-title">Personal Details</div>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Full Name" [(ngModel)]="fullName" [ngModelOptions]="{ standalone : true }"
+        required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Public Email" [(ngModel)]="email" (keyup)="validateEmail()" required />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Designation" [(ngModel)]="currentDesignation" [ngModelOptions]="{ standalone : true }"
+        required>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput type="text" placeholder="Description" [(ngModel)]="selfDescription" [ngModelOptions]="{ standalone : true }"
+        required></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="number" placeholder="Age" [(ngModel)]="age" [ngModelOptions]="{ standalone : true }">
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput type="text" placeholder="Address" [(ngModel)]="address" [ngModelOptions]="{ standalone : true }"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Phone Number" [(ngModel)]="phone" [ngModelOptions]="{ standalone : true }"
+        required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Nationality" [(ngModel)]="nationality" [ngModelOptions]="{ standalone : true }">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Website" [(ngModel)]="personalWebsite" [ngModelOptions]="{ standalone : true }">
+    </mat-form-field>
+  </mat-card>
+</div>
+
+<!-- Skills -->
+<div class="details-list" fxLayout="column" fxLayoutGap="15px">
+  <mat-card>
+    <div class="section-title">Skills</div>
+
+    <!-- ProfessionalSkills -->
+    <div class="array-item" *ngFor="let professionalSkill of professionalSkills, index as skillIndex">
+      <mat-card fxLayout="row" id="{{ skillIndex }}">
+        <div fxFlex>
+          {{ professionalSkill.skillName }}
+          {{ professionalSkill.skillProficiency }}
+        </div>
+        <div fxFlex fxLayoutAlign="end">
+          <mat-icon (click)="removeProfessionalSkill($event)" class="selection-pointer">highlight_off</mat-icon>
+        </div>
+      </mat-card>
+    </div>
+    <button mat-raised-button class="add-button" (click)="toggleProfessionalModal()">
+      <mat-icon>add_circle</mat-icon>
+      Add Professional Skill
+    </button>
+    <mat-divider inset="true"></mat-divider>
+
+    <!-- AdditionalSkills -->
+    <div class="array-item" *ngFor="let additionalSkill of additionalSkills, index as skillIndex">
+      <mat-card fxLayout="row" id="{{ skillIndex }}">
+        <div fxFlex>
+          {{ additionalSkill.skillName }}
+          {{ additionalSkill.skillProficiency }}
+        </div>
+        <div fxFlex fxLayoutAlign="end">
+          <mat-icon (click)="removeAdditionalSkill($event)" class="selection-pointer">highlight_off</mat-icon>
+        </div>
+      </mat-card>
+    </div>
+
+    <button mat-raised-button class="add-button" (click)="toggleAdditionalModal()">
+      <mat-icon>add_circle</mat-icon>
+      Add Additional Skill
+    </button>
+  </mat-card>
+</div>
+
+<!-- Education -->
+<div class="details-list" fxLayout="column" fxLayoutGap="15px">
+  <mat-card>
+    <div class="section-title">Education</div>
+    <div class="array-item" *ngFor="let education of educationalQualifications, index as educationIndex">
+      <mat-card fxLayout="column" id="{{ educationIndex }}">
+        {{ education.startMonth }} to {{ education.endMonth }}
+        <div fxLayout="row">
+          {{ education.institutionName }}
+          <div fxFlex fxLayoutAlign="end">
+            <mat-icon (click)="removeEducation($event)" class="selection-pointer">highlight_off</mat-icon>
+          </div>
+        </div>
+        {{ education.certificationName }}
+      </mat-card>
+    </div>
+    <button mat-raised-button class="add-button" (click)="toggleEducationModal()">
+      <mat-icon>add_circle</mat-icon>
+      Add
+    </button>
+  </mat-card>
+</div>
+
+<!-- Experience -->
+<div class="details-list" fxLayout="column" fxLayoutGap="15px">
+  <mat-card>
+    <div class="section-title">Experience</div>
+    <div class="array-item" *ngFor="let experience of experiences, index as experienceIndex">
+      <mat-card fxLayout="column" id="{{ experienceIndex }}">
+        {{ experience.startMonth }} to {{ experience.endMonth }}
+        <div fxLayout="row">
+          {{ experience.designation }},
+          {{ experience.organization }}
+          <div fxFlex fxLayoutAlign="end">
+            <mat-icon (click)="removeExperience($event)" class="selection-pointer">highlight_off</mat-icon>
+          </div>
+        </div>
+        {{ experience.jobDescription }}
+      </mat-card>
+    </div>
+    <button mat-raised-button class="add-button" (click)="toggleExperienceModal()">
+      <mat-icon>add_circle</mat-icon>
+      Add Experience
+    </button>
+  </mat-card>
+
+</div>
+
+<!-- Social Media -->
+<div class="details-list" fxLayout="column" fxLayoutGap="15px">
+  <mat-card>
+    <div class="section-title">Social Media</div>
+    <div class="array-item" *ngFor="let socialMedia of availableSocialMedias">
+      <mat-card *ngIf="socialMedia.socialMediaUrl">
+        <div>
+          <div fxFlex fxLayout="row">
+            {{ socialMedia.socialMediaName }}
+
+            <div fxFlex fxLayoutAlign="end start">
+              <mat-icon (click)="removeSocialMedia(socialMedia)" class="selection-pointer">highlight_off</mat-icon>
+            </div>
+          </div>
+        </div>
+        <div>
+          {{ socialMedia.socialMediaUrl.substring(2) }}
+        </div>
+      </mat-card>
+    </div>
+    <button mat-raised-button class="add-button" (click)="toggleSocialMediaModal()">
+      <mat-icon>add_circle</mat-icon>
+      Add Experience
+    </button>
+  </mat-card>
+</div>
+
+<!-- Buttons -->
+<div class="details-list" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="end">
+  <button mat-button class="save-button">Save</button>
+  <button mat-raised-button class="save-button">Save and Generate Resumé</button>
+</div>
+
+<!-- Skills Modals -->
+<div class="modal show-modal" *ngIf="showProfessionalModal">
+  <div class="modal-content">
+    <div class="section-title">Add Professional Skill</div>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Skill" [(ngModel)]="skill" [ngModelOptions]="{ standalone : true }"
+        required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="number" placeholder="Skill Proficiency" [(ngModel)]="proficiency" [ngModelOptions]="{ standalone : true }"
+        required>
+    </mat-form-field>
+    <div>
+      <button mat-button (click)="toggleProfessionalModal()">Cancel</button>
+      <button mat-raised-button (click)="addProfessionalSkill()">Add</button>
+    </div>
+  </div>
+</div>
+<div class="modal show-modal" *ngIf="showAdditionalModal">
+  <div class="modal-content">
+    <div class="section-title">Add Additional Skill</div>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Skill" [(ngModel)]="skill" [ngModelOptions]="{ standalone : true }"
+        required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="number" placeholder="Skill Proficiency" [(ngModel)]="proficiency" [ngModelOptions]="{ standalone : true }"
+        required>
+    </mat-form-field>
+    <div>
+      <button mat-button (click)="toggleAdditionalModal()">Cancel</button>
+      <button mat-raised-button (click)="addAdditionalSkill()">Add</button>
+    </div>
+  </div>
+</div>
+
+<!-- Education Modal -->
+<div class="modal show-modal" *ngIf="showEducationModal">
+  <div class="modal-content">
+    <div class="section-title">Add</div>
+    <mat-form-field>
+      <input matInput type="month" placeholder="Start Month" [(ngModel)]="startMonth" [ngModelOptions]="{ standalone : true }"
+        required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="month" placeholder="End Month" [(ngModel)]="endMonth" [ngModelOptions]="{ standalone : true }"
+        required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Institue Name" [(ngModel)]="instituteName" [ngModelOptions]="{ standalone : true }"
+        required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Certification / Degree Name" [(ngModel)]="certificationName"
+        [ngModelOptions]="{ standalone : true }" required>
+    </mat-form-field>
+    <div>
+      <button mat-button (click)="toggleEducationModal()">Cancel</button>
+      <button mat-raised-button (click)="addEducation()">Add</button>
+    </div>
+  </div>
+</div>
+
+<!-- Experience Modal -->
+<div class="modal show-modal" *ngIf="showExperienceModal">
+  <div class="modal-content">
+    <div class="section-title">Add Experience</div>
+    <mat-form-field>
+      <input matInput type="month" placeholder="Start Month" [(ngModel)]="startMonth" [ngModelOptions]="{ standalone : true }"
+        required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="month" placeholder="End Month" [(ngModel)]="endMonth" [ngModelOptions]="{ standalone : true }"
+        required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Organization Name" [(ngModel)]="organization" [ngModelOptions]="{ standalone : true }"
+        required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Designation" [(ngModel)]="designation" [ngModelOptions]="{ standalone : true }"
+        required>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput placeholder="Job Description" [(ngModel)]="jobDescription" [ngModelOptions]="{ standalone : true }"
+        required></textarea>
+    </mat-form-field>
+    <div>
+      <button mat-button (click)="toggleExperienceModal()">Cancel</button>
+      <button mat-raised-button (click)="addExperience()">Add</button>
+    </div>
+  </div>
+</div>
+
+<!-- Social Media Modal -->
+<div class="modal show-modal" *ngIf="showSocialMediaModal">
+  <div class="modal-content">
+    <div class="section-title">Social Media</div>
+    <mat-form-field>
+      <mat-select placeholder="Social Media" required [(ngModel)]="selectedSocialMedia">
+        <div *ngFor="let socialMedia of availableSocialMedias">
+          <mat-option [value]="socialMedia.socialMediaCode" *ngIf="!socialMedia.socialMediaUrl.length > 0">
+            {{ socialMedia.socialMediaName }}
+          </mat-option>
+        </div>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="url" placeholder="URL" [(ngModel)]="socialMediaUrl" [ngModelOptions]="{ standalone : true }"
+        required>
+    </mat-form-field>
+    <div>
+      <button mat-button (click)="toggleSocialMediaModal()">Cancel</button>
+      <button mat-raised-button (click)="addSocialMedia()">Add</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+
+.warning-text {
+    color: red;
+}
+.title {
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 320px) {
+  .login-form {
+    margin: 0%;
+    height: 350px;
+    min-height: 350px;
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .login-form {
+    margin: 0% 5% 0% 5%;
+    height: 350px;
+    min-height: 350px;
+    
+  }
+}
+
+@media screen and (min-width:600px) {
+  .login-form {
+    margin: 0% 10% 0% 10%;
+    height: 350px;
+    min-height: 350px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .login-form {
+    margin: 0% 15% 0% 15%;
+    height: 400px;
+    min-height: 400px;
+  }
+
+}
+
+@media screen and (min-width: 1024px) {
+  .login-form {
+    margin: 0% 25% 0% 25%;
+  }
+}

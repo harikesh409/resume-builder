@@ -1,0 +1,34 @@
+<mat-card class="register-form" fxLayoutAlign="center center">
+<div fxLayout="column" fxLayoutGap="15px" class="stretch">
+    <div class="title">Register</div>
+    <div>
+      <mat-form-field class="stretch">
+        <input matInput type="text" placeholder="Name" [(ngModel)]="name" [ngModelOptions]="{ standalone : true }" required>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="stretch">
+        <input matInput type="text" placeholder="Email" [(ngModel)]="email" [ngModelOptions]="{ standalone : true }" (focus)="enableEmailError()"
+          (keyup)="validateEmail()" required>
+      </mat-form-field>
+      <div class="warning-text" *ngIf="!emailValidOrNot">Email appears to be invalid!</div>
+    </div>
+    <div>
+      <mat-form-field class="stretch">
+        <input matInput type="password" placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{ standalone : true }" (focus)="enablePasswordError()"
+          (keyup)="validatePassword()" required>
+      </mat-form-field>
+      <div class="warning-text" *ngIf="!passwordValidOrNot">Password must contain atleast one uppercase letter, one lowercase letter, one digit and one special character</div>
+    </div>
+    <div>
+      <mat-form-field class="stretch">
+        <input matInput type="password" placeholder="Confirm Password" [(ngModel)]="confirmPassword" [ngModelOptions]="{ standalone : true }"
+          (focus)="enableConfirmPasswordError()" (keyup)="validateConfirmPassword()" required>
+      </mat-form-field>
+      <div class="warning-text" *ngIf="!confirmPasswordValidOrNot">Passwords don't match</div>
+    </div>
+    <div fxLayoutAlign="center center">
+      <button mat-raised-button (click)="register()">Register</button>
+    </div>
+  </div>
+</mat-card>

@@ -1,0 +1,25 @@
+/* .right {
+    position: absolute;
+    right: 0;
+    text-align: right;
+} */
+
+@media screen and (min-width: 300px) {}
+
+@media screen and (min-width: 800px) {}
+
+.navbar {
+  position: sticky;
+  z-index: 999;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  width: 100%;
+  background-color: #3f51b5;
+  color: #fff;
+}
+
+.navbar-title {
+  cursor: pointer;
+  font-size: 1.5rem;
+}

@@ -1,0 +1,20 @@
+<mat-toolbar class="navbar">
+  <div class="navbar-title" (click)="gotoHome()" fxFlex>Resume Builder</div>
+  <div fxFlex fxLayoutAlign="end center" fxLayoutGap="5px" fxShow fxHide.lt-sm>
+    <div class="navbar-a">
+      <a mat-button (click)="gotoLogin()">Login</a>
+    </div>
+    <div class="navbar-a">
+      <a mat-button (click)="gotoRegister()">Register</a>
+    </div>
+  </div>
+  <div fxLayoutAlign="end center" fxHide fxShow.lt-sm>
+    <mat-icon [matMenuTriggerFor]="loginOrRegister">account_circle</mat-icon>
+  </div>
+  <button mat-menu-item (click)="gotoResume()">Resume:exp</button>
+</mat-toolbar>
+
+<mat-menu #loginOrRegister="matMenu" [overlapTrigger]="false" yPosition="below">
+  <button mat-menu-item (click)="gotoRegister()">Register</button>
+  <button mat-menu-item (click)="gotoLogin()">Login</button>
+</mat-menu>

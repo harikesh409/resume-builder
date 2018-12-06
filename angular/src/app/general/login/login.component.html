@@ -1,0 +1,19 @@
+<mat-card class="login-form" fxLayoutAlign="center center">
+  <div fxLayout="column" fxLayoutGap="15px">
+    <div fxLayout="column">
+      <div class="title">Login</div>
+      <mat-form-field>
+        <input matInput placeholder="Email" [(ngModel)]="email" (focus)="enableError()" (keyup)="validateEmail()" required/>
+      </mat-form-field>
+      <small class="warning-text" *ngIf="!validOrNot">Email appears to be invalid!</small>
+    </div>
+    <div fxLayout="column">
+      <mat-form-field>
+        <input matInput type="password" placeholder="Password" [(ngModel)]="password" required/>
+      </mat-form-field>
+    </div>
+    <div fxLayoutAlign="center center">
+      <button mat-raised-button (click)="login()">Login</button>
+    </div>
+  </div>
+</mat-card>
