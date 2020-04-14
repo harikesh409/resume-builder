@@ -30,6 +30,6 @@ export class LoginComponent {
         }
     }
     login() {
-        this.utility.notify(false, "Invalid credentials", "Try again");
+        this.utility.notify("Invalid credentials", "Try again");
     }
 }

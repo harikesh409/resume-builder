@@ -5,25 +5,20 @@ import { RegisterComponent } from './general/register/register.component';
 import { HomepageComponent } from './general/homepage/homepage.component';
 
 const appRoutes: Routes = [
-    {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full'
-    },
-    { path: 'home', component: HomepageComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'resume', loadChildren: './resume/resume.module#ResumeModule' },
-    { path: '**', redirectTo: 'home', pathMatch: 'full' }
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  { path: 'home', component: HomepageComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'resume', loadChildren: './resume/resume.module#ResumeModule' },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot(appRoutes, { onSameUrlNavigation: 'reload' })
-    ],
-    exports: [
-        RouterModule
-    ]
+  imports: [RouterModule.forRoot(appRoutes, { onSameUrlNavigation: 'reload' })],
+  exports: [RouterModule]
 })
-
-export class AppRoutingModule { }
+export class AppRoutingModule {}

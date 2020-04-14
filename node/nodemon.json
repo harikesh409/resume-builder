@@ -1,8 +1,9 @@
 {
-    "env": {
-        "MONGO_ATLAS_USERNAME": "harikesh",
-        "MONGO_ATLAS_PASSWORD": "P.harikesh409",
-        "PORT": "9000",
-        "JWT_KEY":"resumebuilder"
-    }
+  "env": {
+    "MONGO_ATLAS_USERNAME": "harikesh",
+    "MONGO_ATLAS_PASSWORD": "P.harikesh409",
+    "PORT": "9000",
+    "JWT_KEY_PUBLIC": "resumebuilder",
+    "JWT_KEY_PRIVATE": "resumebuilderprivate"
+  }
 }

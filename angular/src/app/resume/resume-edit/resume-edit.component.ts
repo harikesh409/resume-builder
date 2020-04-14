@@ -136,7 +136,7 @@ export class ResumeEditComponent {
             this.professionalSkills.push(newSkill);
             this.toggleProfessionalModal();
         } else {
-            this.utility.notify(false, "Skill already exists!", "OK");
+            this.utility.notify("Skill already exists!", "OK");
         }
         this.skill = "";
         this.proficiency = "";
@@ -153,7 +153,7 @@ export class ResumeEditComponent {
             this.toggleAdditionalModal();
         }
         else {
-            this.utility.notify(false, "Skill already exists!", "OK");
+            this.utility.notify("Skill already exists!", "OK");
         }
         this.skill = "";
         this.proficiency = "";
